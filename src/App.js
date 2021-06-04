@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react";
 
 function App() {
+  const [url, setUrl] = useState("");
+  const [response, setResponse] = useState("");
+  const [HTTPMethod, setHTTPMethod] = useState("GET");
+  const getData = () => fetch(url, {method:HTTPMethod})
+    .then(response => response.json())
+    .then(data => setResponse(JSON.stringify(data)));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <input type="text" onChange={({target})=>setUrl(target.value)} />
+          <select value={HTTPMethod} onChange={({target})=>setHTTPMethod(target.value)}>
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="DELETE">DELETE</option>
+            <option value="PUT">PUT</option>
+            <option value="PATCH">PATCH</option>
+          </select>
+      <button onClick={getData}>{"|>"}</button>
+      <textarea value={response}/>
+    </>
   );
 }
 
