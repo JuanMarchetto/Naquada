@@ -1,18 +1,29 @@
 body{
-	background-color: black;
-  }
+	background-color: darkslateblue;
+}
   
-  input, textarea {
+input, textarea {
 	padding: 1rem;
-	margin: 2rem;
-	background-color: white;
-  }
+	margin: 1rem 2rem;
+	background-color: lightgrey;
+}
   
-  input{
+input{
 	width: 80vh;
-  }
+}
+
+label{
+  color: greenyellow;
+}
   
-  textarea{
-	width:calc(100vw - 10rem);
+textarea{
+	width:calc(100vw - 8rem);
 	height: 50vh;
-  }
+}
+
+button{
+  background-color: darkgreen;
+  border-radius: 0 50% 50% 0;
+  border: 1px solid green;
+  color: greenyellow;
+}
