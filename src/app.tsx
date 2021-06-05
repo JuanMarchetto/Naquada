@@ -1,7 +1,8 @@
-import {useState} from "react";
+import React, { useState } from 'react'
+import './app.css'
 
-function App() {
-  const [url, setUrl] = useState("");
+export function App(): React.ReactElement {
+	const [url, setUrl] = useState("");
   const [response, setResponse] = useState("");
   const [HTTPMethod, setHTTPMethod] = useState("GET");
   const getData = () => fetch(url, {method:HTTPMethod})
@@ -23,5 +24,3 @@ function App() {
     </>
   );
 }
-
-export default App;

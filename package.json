@@ -1,40 +1,58 @@
 {
-  "name": "testing-tauri",
-  "version": "0.1.0",
+  "name": "naquada",
+  "version": "0.2.0",
   "private": true,
-  "dependencies": {
-    "@tauri-apps/api": "^1.0.0-beta-rc.2",
-    "@tauri-apps/cli": "^1.0.0-beta-rc.2",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
+  "description": "A Functional toolbox created with Tauri an React",
+  "keywords": [],
+  "license": "MIT",
+  "author": "Juan Patricio Marchetto",
+  "scripts": {
+    "prebuild": "rimraf ./dist",
+    "build:fe": "webpack --production",
+    "build:tauri": "tauri build",
+    "build": "npm run build:fe && npm run build:tauri",
+    "dev": "concurrently -p \"[{name}]\" -n \"front-end,tauri\" -c \"bgGreen.bold,bgCyan.bold\" \"npm run dev:fe\" \"npm run dev:tauri\"",
+    "dev:fe": "webpack-dev-server --watch",
+    "dev:tauri": "cross-env RUST_DEBUG=1 tauri dev"
+  },
+  "resolutions": {
+    "bl": "^2.2.1",
+    "elliptic": "^6.5.3",
+    "minimist": "^1.2.2",
+    "node-forge": "^0.10.0",
+    "serialize-javascript": "^3.1.0",
+    "websocket-extensions": "0.1.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "@babel/preset-typescript": "^7.10.1",
+    "@types/node": "^14.0.13",
+    "@types/react": "^16.9.35",
+    "@types/webpack": "^4.41.17",
+    "@types/webpack-dev-server": "^3.11.0",
+    "@tauri-apps/api": "1.0.0-beta.1",
+    "@tauri-apps/cli": "^1.0.0-beta.0",
+    "babel-loader": "^8.1.0",
+    "concurrently": "^5.2.0",
+    "core-js": "^2.6.12",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.5.3",
+    "glob": "^7.1.6",
+    "html-webpack-plugin": "^4.3.0",
+    "inline-source-cli": "^2.0.0",
+    "purgecss-webpack-plugin": "^2.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "tauri": "tauri"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "rimraf": "^3.0.2",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^3.0.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "3.3.11",
+    "webpack-dev-server": "^3.11.2",
+    "view-logics": "^0.3.0"
   }
 }
