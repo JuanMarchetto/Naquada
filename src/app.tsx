@@ -8,13 +8,12 @@ export function App(): React.ReactElement {
   const [HTTPMethod, setHTTPMethod] = useState("GET");
   const [body, setBody] = useState(undefined);
   const [headers, setHeaders] = useState(undefined);
+  const [showOptions, setShowOptions] = useState(false);
   const getData = () => fetch(url, {method:HTTPMethod, body: JSON.stringify(body), headers})
     .then(response => response.json())
     .then(data => setResponse(JSON.stringify(data)));
   const input = "HTTPRequest";
   const output = "textarea";
-  const showBody = true;
-  const showheaders = false;
 
   return when([
     [input === "HTTPRequest",
@@ -31,18 +30,26 @@ export function App(): React.ReactElement {
           <option value="PATCH">PATCH</option>
         </select>
         <button onClick={getData}>{">"}</button>
-      </section>
-    ],
-    [showBody,
-      <section>
-        <label>Body:</label>
-        <input type="text" onChange={({target})=>setBody(target.value)} />
-      </section>
-    ],
-    [showheaders,
-      <section>
-        <label>headers:</label>
-        <input type="text" onChange={({target})=>setHeaders(target.value)} />
+        <div className="options-container">
+          <span
+            className="options-toggler"
+            onClick={()=>setShowOptions(!showOptions)}
+          >
+            {showOptions ? "show less" : "show more"}
+          </span>
+          {showOptions && (
+            <>
+              <div>
+                <label>Body:</label>
+                <input type="text" onChange={({target})=>setBody(target.value)} />
+              </div>
+              <div>
+                <label>headers:</label>
+                <input type="text" onChange={({target})=>setHeaders(target.value)} />
+              </div>
+            </>
+          )}
+        </div>
       </section>
     ],
     [output === "textarea",
