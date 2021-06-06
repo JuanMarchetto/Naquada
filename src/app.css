@@ -1,24 +1,46 @@
 body{
-	background-color: darkslateblue;
+	background-color: #676662;
+	max-width: 100vw;
+	overflow-x: hidden;
 }
-  
+
+section{
+	width: 100%;
+	padding: .5rem 1rem;
+}
+
+section > div {
+	display: inline-block;
+}
+
 input, textarea {
 	padding: 1rem;
-	margin: 1rem 2rem;
-	background-color: lightgrey;
+	border-color: #51504c;
+	background-color: #222;
 }
-  
+
+select, button{
+	height: 2rem;
+	display: inline-block;
+}
+
 input{
-	width: 80vh;
+	width: 60vw;
+	color:burlywood;
+	margin: 1rem 2rem;
 }
 
 label{
-  color: greenyellow;
+  color: black;
+  display: inline-block;
+  width: 50px;
 }
   
 textarea{
-	width:calc(100vw - 8rem);
+	display: block;
+	width:calc(100vw - 6rem);
 	height: 50vh;
+	color:burlywood;
 }
 
 button{

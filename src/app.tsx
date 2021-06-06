@@ -8,7 +8,7 @@ export function App(): React.ReactElement {
   const [HTTPMethod, setHTTPMethod] = useState("GET");
   const [body, setBody] = useState(undefined);
   const [headers, setHeaders] = useState(undefined);
-  const getData = () => fetch(url, {method:HTTPMethod, body: JSON.stringify(body)})
+  const getData = () => fetch(url, {method:HTTPMethod, body: JSON.stringify(body), headers})
     .then(response => response.json())
     .then(data => setResponse(JSON.stringify(data)));
   const input = "HTTPRequest";
@@ -19,9 +19,10 @@ export function App(): React.ReactElement {
   return when([
     [input === "HTTPRequest",
       <section>
-        <label>URL:
+        <div>
+          <label>URL:</label>
           <input type="text" onChange={({target})=>setUrl(target.value)} />
-        </label>
+        </div>
         <select value={HTTPMethod} onChange={({target})=>setHTTPMethod(target.value)}>
           <option value="GET">GET</option>
           <option value="POST">POST</option>
@@ -33,19 +34,21 @@ export function App(): React.ReactElement {
       </section>
     ],
     [showBody,
-      <label>Body:
+      <section>
+        <label>Body:</label>
         <input type="text" onChange={({target})=>setBody(target.value)} />
-      </label>
+      </section>
     ],
     [showheaders,
-      <label>headers:
+      <section>
+        <label>headers:</label>
         <input type="text" onChange={({target})=>setHeaders(target.value)} />
-      </label>
+      </section>
     ],
     [output === "textarea",
     <section>
-      <label>Response:</label>
-      <textarea value={response}/>
+      <span>Response:</span>
+      <textarea value={response} readOnly />
     </section>
     ],
   ])
